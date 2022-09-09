@@ -5,7 +5,7 @@ import styles from './Header.module.css'
 const Header = () => {
   return (
     <div className={styles.header}>
-      <nav>
+      <nav className="container">
         <Link to="/">Home</Link>
         <Link to="/login">Sign Up / Log In</Link>
       </nav>
