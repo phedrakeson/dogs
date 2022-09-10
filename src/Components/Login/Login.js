@@ -1,10 +1,22 @@
 import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+import LoginForm from './Form/LoginForm'
+import LoginCreate from './Create/LoginCreate'
+import PasswordLost from './PasswordLost/PasswordLost'
+import PasswordReset from './PasswordReset/PasswordReset'
 import styles from './Login.module.css'
 
 
 const Login = () => {
   return (
-    <div>Login</div>
+    <div>
+      <Routes>
+        <Route path="/" element={<LoginForm />} />
+        <Route path="/criar" element={<LoginCreate />} />
+        <Route path="/perdeu" element={<PasswordLost />} />
+        <Route path="/resetar" element={<PasswordReset />} />
+      </Routes>
+    </div>
   )
 }
 
