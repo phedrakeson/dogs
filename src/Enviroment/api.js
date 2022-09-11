@@ -34,3 +34,14 @@ export function USER_GET(token) {
     }
   }
 }
+
+export function USER_POST(body) {
+  return {
+    url: pathValues.API_BASE_URL + '/api/user',
+    options: {
+      method: 'POST',
+      headers: pathValues.HEADERS,
+      body: JSON.stringify(body)
+    }
+  }
+}

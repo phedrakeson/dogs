@@ -1,4 +1,6 @@
 import React from 'react'
+import { USER_POST } from '../../../Enviroment/api';
+import { UserContext } from '../../../Shared/Context/UserContext';
 import Button from '../../../Shared/Forms/Button/Button';
 import Input from '../../../Shared/Forms/Input/Input';
 import { useForm } from '../../../Shared/Hooks/useForm';
@@ -9,8 +11,17 @@ const LoginCreate = () => {
   const email = useForm('email');
   const password = useForm('password');
 
-  function handleSubmit(event) {
+  const { userLogin } = React.useContext(UserContext);
+
+  async function handleSubmit(event) {
     event.preventDefault();
+    const { url, options } = USER_POST({
+      username: username.value,
+      email: email.value,
+      password: password.value
+    });
+    const response = await fetch(url, options);
+    if (response.ok) userLogin(username.value, password.value);
   }
 
   return (
