@@ -3,6 +3,8 @@ import styles from './User.module.css'
 
 export const User = () => {
   return (
-    <div>User</div>
+    <section className={styles.container}>
+
+    </section>
   )
 }
