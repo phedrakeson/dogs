@@ -14,14 +14,16 @@ export const UserStorage = ({ children }) => {
       const token = window.localStorage.getItem('token');
       if (token) {
         try {
+          setError(null);
+          setLoading(true);
           const { url, options } = TOKEN_VALIDATE_POST(token);
           const response = await fetch(url, options);
           if (!response.ok) throw new Error('Token inválido');
-          const json = await response.json();
+          await getUser(token);
         } catch (error) {
-
+          userLogout();
         } finally {
-
+          setLoading(false);
         }
       }
     }
@@ -37,6 +39,14 @@ export const UserStorage = ({ children }) => {
     getUser(token);
   }
 
+  async function userLogout() {
+    setData(null);
+    setError(null);
+    setLoading(false);
+    setLogin(false);
+    window.localStorage.removeItem('token');
+  }
+
   async function getUser(token) {
     const { url, options } = USER_GET(token);
     const response = await fetch(url, options);
@@ -46,7 +56,7 @@ export const UserStorage = ({ children }) => {
   }
 
   return (
-    <UserContext.Provider value={{ userLogin, data }}>
+    <UserContext.Provider value={{ userLogin, userLogout, data }}>
       {children}
     </UserContext.Provider>
   )
