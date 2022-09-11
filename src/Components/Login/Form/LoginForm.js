@@ -13,13 +13,15 @@ const LoginForm = () => {
   function handleSubmit(event) {
     event.preventDefault();
 
-    fetch(pathValues.API_BASE_URL + 'jwt-auth/v1/token', {
-      method: 'POST',
-      headers: pathValues.HEADERS,
-      body: JSON.stringify(),
-    })
-      .then((res) => res.json())
-      .then((json) => console.log(json));
+    if (username.validate() && password.validate()) {
+      fetch(pathValues.API_BASE_URL + 'jwt-auth/v1/token', {
+        method: 'POST',
+        headers: pathValues.HEADERS,
+        body: JSON.stringify(),
+      })
+        .then((res) => res.json())
+        .then((json) => console.log(json));
+    }
   }
 
   return (
