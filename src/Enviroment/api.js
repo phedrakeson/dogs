@@ -1,4 +1,4 @@
-import pathValues from "./pathValues";
+import pathValues from "./pathValues"
 
 export function TOKEN_POST(body) {
   return {
