@@ -1,26 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import pathValues from '../../../Enviroment/PathValues';
+import pathValues from '../../../Enviroment/pathValues';
 import Input from '../../../Shared/Forms/Input/Input';
 import Button from '../../../Shared/Forms/Button/Button';
 import styles from './LoginForm.module.css';
 import { useForm } from '../../../Shared/Hooks/useForm';
+import { TOKEN_POST } from '../../../Enviroment/api';
 
 const LoginForm = () => {
   const username = useForm();
   const password = useForm();
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     if (username.validate() && password.validate()) {
-      fetch(pathValues.API_BASE_URL + 'jwt-auth/v1/token', {
-        method: 'POST',
-        headers: pathValues.HEADERS,
-        body: JSON.stringify(),
-      })
-        .then((res) => res.json())
-        .then((json) => console.log(json));
+      const { url, options } = TOKEN_POST({ username: username.value, password: password.value });
+
+      const response = await fetch(url, options)
+      const json = await response.json();
     }
   }
 
