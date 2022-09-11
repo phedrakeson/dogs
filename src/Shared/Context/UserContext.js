@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import { TOKEN_POST, TOKEN_VALIDATE_POST, USER_GET } from '../../Enviroment/api';
 
 export const UserContext = React.createContext();
@@ -8,6 +9,44 @@ export const UserStorage = ({ children }) => {
   const [login, setLogin] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
+  const navigate = useNavigate();
+
+  const userLogout = React.useCallback(
+    async function () {
+      setData(null);
+      setError(null);
+      setLoading(false);
+      setLogin(false);
+      window.localStorage.removeItem('token');
+      navigate('/login');
+    }, [navigate]
+  );
+
+  async function userLogin(username, password) {
+    try {
+      setError(null);
+      setLoading(true);
+      const { url, options } = TOKEN_POST({ username, password });
+      const tokenRes = await fetch(url, options);
+      if (!tokenRes.ok) throw new Error('No momento, não foi possível prosseguir com a sua solicitação.');
+      const { token } = await tokenRes.json();
+      window.localStorage.setItem('token', token);
+      await getUser(token);
+    } catch (error) {
+      setError(error.message);
+      setLogin(false);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function getUser(token) {
+    const { url, options } = USER_GET(token);
+    const response = await fetch(url, options);
+    const json = await response.json();
+    setData(json);
+    setLogin(true);
+  }
 
   React.useEffect(() => {
     async function autoLogin() {
@@ -29,34 +68,10 @@ export const UserStorage = ({ children }) => {
     }
 
     autoLogin();
-  }, [])
-
-  async function userLogin(username, password) {
-    const { url, options } = TOKEN_POST({ username, password });
-    const tokenRes = await fetch(url, options);
-    const { token } = await tokenRes.json();
-    window.localStorage.setItem('token', token);
-    getUser(token);
-  }
-
-  async function userLogout() {
-    setData(null);
-    setError(null);
-    setLoading(false);
-    setLogin(false);
-    window.localStorage.removeItem('token');
-  }
-
-  async function getUser(token) {
-    const { url, options } = USER_GET(token);
-    const response = await fetch(url, options);
-    const json = await response.json();
-    setData(json);
-    setLogin(true);
-  }
+  }, [userLogout])
 
   return (
-    <UserContext.Provider value={{ userLogin, userLogout, data }}>
+    <UserContext.Provider value={{ userLogin, userLogout, data, error, loading, login }}>
       {children}
     </UserContext.Provider>
   )
