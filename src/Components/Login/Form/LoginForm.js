@@ -5,6 +5,7 @@ import Button from '../../../Shared/Forms/Button/Button';
 import styles from './LoginForm.module.css';
 import { useForm } from '../../../Shared/Hooks/useForm';
 import { UserContext } from '../../../Shared/Context/UserContext';
+import { Error } from '../../../Shared/Helpers/Error';
 
 const LoginForm = () => {
   const { userLogin, error, loading } = React.useContext(UserContext);
@@ -20,13 +21,13 @@ const LoginForm = () => {
   }
 
   return (
-    <section>
-      <h1>Login</h1>
+    <section className="animeLeft">
+      <h1 className="title">Login</h1>
       <form onSubmit={handleSubmit}>
         <Input label="Usuário" type="text" name="username" {...username} />
         <Input label="Senha" type="password" name="password" {...password} />
         {loading ? <Button disabled>Buscando por um petisco...</Button> : <Button>Entrar</Button>}
-        {error && <p>{error}</p>}
+        <Error error={error} />
       </form>
       <Link to="/login/criar">Cadastro</Link>
     </section>
