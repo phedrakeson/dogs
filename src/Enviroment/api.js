@@ -45,3 +45,16 @@ export function USER_POST(body) {
     }
   }
 }
+
+export function PHOTO_POST(formData, token) {
+  return {
+    url: pathValues.API_BASE_URL + '/api/photo',
+    options: {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+      body: formData
+    }
+  }
+}

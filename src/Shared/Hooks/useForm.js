@@ -3,11 +3,15 @@ import React from 'react'
 const types = {
   email: {
     regex: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
-    message: 'Fill in a valid email'
+    message: 'Fill in a valid email.'
   },
   password: {
     regex: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
     message: 'The password must have 1 uppercase character, 1 lowercase character, 1 digit and 1 special character. With at least 8 characters.'
+  },
+  number: {
+    regex: /^\d+$/,
+    message: 'Fill in with only numbers.'
   }
 }
 
