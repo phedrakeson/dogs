@@ -2,7 +2,7 @@ import pathValues from "./pathValues";
 
 export function TOKEN_POST(body) {
   return {
-    url: pathValues + '/jwt-auth/v1/token',
+    url: pathValues.API_BASE_URL + '/jwt-auth/v1/token',
     options: {
       method: 'POST',
       headers: pathValues.HEADERS,
@@ -13,7 +13,7 @@ export function TOKEN_POST(body) {
 
 export function USER_GET(token) {
   return {
-    url: pathValues + '/api/user',
+    url: pathValues.API_BASE_URL + '/api/user',
     options: {
       method: 'GET',
       headers: {
