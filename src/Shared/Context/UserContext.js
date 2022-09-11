@@ -28,7 +28,7 @@ export const UserStorage = ({ children }) => {
       setLoading(true);
       const { url, options } = TOKEN_POST({ username, password });
       const tokenRes = await fetch(url, options);
-      if (!tokenRes.ok) throw new Error('No momento, não foi possível prosseguir com a sua solicitação.');
+      if (!tokenRes.ok) throw new Error('We were unable to find any snacks at this time.');
       const { token } = await tokenRes.json();
       window.localStorage.setItem('token', token);
       await getUser(token);
@@ -57,7 +57,7 @@ export const UserStorage = ({ children }) => {
           setLoading(true);
           const { url, options } = TOKEN_VALIDATE_POST(token);
           const response = await fetch(url, options);
-          if (!response.ok) throw new Error('Token inválido');
+          if (!response.ok) throw new Error('We are currently unable to track the scent. Try again.');
           await getUser(token);
         } catch (error) {
           userLogout();
