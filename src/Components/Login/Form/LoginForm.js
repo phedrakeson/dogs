@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Input from '../../../Shared/Forms/Input/Input';
 import Button from '../../../Shared/Forms/Button/Button';
 import styles from './LoginForm.module.css';
+import stylesBtn from '../../../Shared/Forms/Button/Button.module.css';
 import { useForm } from '../../../Shared/Hooks/useForm';
 import { UserContext } from '../../../Shared/Context/UserContext';
 import { Error } from '../../../Shared/Helpers/Error';
@@ -23,13 +24,18 @@ const LoginForm = () => {
   return (
     <section className="animeLeft">
       <h1 className="title">Login</h1>
-      <form onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <Input label="Usuário" type="text" name="username" {...username} />
         <Input label="Senha" type="password" name="password" {...password} />
         {loading ? <Button disabled>Buscando por um petisco...</Button> : <Button>Entrar</Button>}
         <Error error={error} />
       </form>
-      <Link to="/login/criar">Cadastro</Link>
+      <Link className={styles.perdeu} to="/login/perdeu">Perdeu a Senha?</Link>
+      <div className={styles.cadastro}>
+        <h2 className={styles.subtitle}>Cadastre-se</h2>
+        <p>Ainda não possui conta? Cadastre-se no site</p>
+        <Link className={stylesBtn.button} to="/login/criar">Cadastro</Link>
+      </div>
     </section>
   );
 };
