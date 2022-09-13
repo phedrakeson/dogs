@@ -6,7 +6,7 @@ import { useFetch } from '../../Hooks/useFetch'
 import { FeedPhotosItem } from './Photo/FeedPhotosItem'
 import styles from './FeedPhotos.module.css'
 
-export const FeedPhotos = () => {
+export const FeedPhotos = ({ setModalPhoto }) => {
   const { data, loading, error, request } = useFetch();
 
   React.useEffect(() => {
@@ -23,7 +23,7 @@ export const FeedPhotos = () => {
   if (data)
     return (
       <ul className={`${styles.feed} animeLeft`}>
-        {data.map(photo => <FeedPhotosItem key={photo.id} photo={photo} />)}
+        {data.map(photo => <FeedPhotosItem key={photo.id} photo={photo} setModalPhoto={setModalPhoto} />)}
       </ul>
     )
   else return null;
