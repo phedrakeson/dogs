@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../../Context/UserContext';
+import Image from '../../../Helpers/Image/Image';
 import { PhotoComments } from '../Comments/PhotoComments';
 import PhotoDelete from '../Delete/PhotoDelete';
 import styles from './PhotoContent.module.css'
@@ -11,7 +12,7 @@ export const PhotoContent = ({ data }) => {
   return (
     <div className={styles.photo}>
       <div className={styles.img}>
-        <img src={photo.src} alt={photo.title} />
+        <Image src={photo.src} alt={photo.title} />
       </div>
       <div className={styles.details}>
         <div>
