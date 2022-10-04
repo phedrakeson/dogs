@@ -20,9 +20,9 @@ export const PhotoCommentsForm = ({ id, setComments }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <textarea id="comment" name="comment" placeholder="Say something nice..." value={comment} onChange={({ target }) => setComment(target.value)} />
-      <button>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <textarea className={styles.textarea} id="comment" name="comment" placeholder="Say something nice..." value={comment} onChange={({ target }) => setComment(target.value)} />
+      <button className={styles.button}>
         <Enviar />
       </button>
       {error && <Error error={error} />}
