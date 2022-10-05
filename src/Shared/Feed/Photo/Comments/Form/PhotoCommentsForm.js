@@ -5,7 +5,7 @@ import { useFetch } from '../../../../Hooks/useFetch';
 import { COMMENT_POST } from '../../../../../Enviroment/api';
 import { Error } from '../../../../Helpers/Error';
 
-export const PhotoCommentsForm = ({ id, setComments }) => {
+export const PhotoCommentsForm = ({ id, setComments, single }) => {
   const { request, error } = useFetch();
   const [comment, setComment] = React.useState('');
 
@@ -20,7 +20,7 @@ export const PhotoCommentsForm = ({ id, setComments }) => {
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form className={`${styles.form} ${single ? styles.single : ''}`} onSubmit={handleSubmit}>
       <textarea className={styles.textarea} id="comment" name="comment" placeholder="Say something nice..." value={comment} onChange={({ target }) => setComment(target.value)} />
       <button className={styles.button}>
         <Enviar />
