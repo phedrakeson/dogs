@@ -17,7 +17,7 @@ export const UserPhotoPost = () => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    if (data) navigate('/conta');
+    if (data) navigate('/account');
   }, [data, navigate])
 
   function handleSubmit(event) {
