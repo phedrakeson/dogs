@@ -104,3 +104,14 @@ export function PHOTO_DELETE(id) {
     }
   }
 }
+
+export function PASSWORD_LOST(body) {
+  return {
+    url: pathValues.API_BASE_URL + '/api/password/lost',
+    options: {
+      method: 'POST',
+      headers: pathValues.HEADERS,
+      body: JSON.stringify(body)
+    },
+  }
+}
