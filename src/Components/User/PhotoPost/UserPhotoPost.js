@@ -4,6 +4,7 @@ import { PHOTO_POST } from '../../../Enviroment/api';
 import Button from '../../../Shared/Forms/Button/Button';
 import Input from '../../../Shared/Forms/Input/Input';
 import { Error } from '../../../Shared/Helpers/Error';
+import { Head } from '../../../Shared/Helpers/Head/Head';
 import { useFetch } from '../../../Shared/Hooks/useFetch';
 import { useForm } from '../../../Shared/Hooks/useForm';
 import styles from './UserPhotoPost.module.css'
@@ -42,6 +43,7 @@ export const UserPhotoPost = () => {
 
   return (
     <section className={`${styles.photoPost} animeLeft`}>
+      <Head title="Post your photo" />
       <form onSubmit={handleSubmit}>
         <Input label="Name" type="text" name="nome" {...nome} />
         <Input label="Weight" type="number" name="peso" {...peso} />

@@ -32,7 +32,7 @@ export const UserHeaderNav = () => {
         </NavLink>
         <NavLink to="/account/stats">
           <Stats />
-          {mobile && 'Stats'}
+          {mobile && 'Statistics'}
         </NavLink>
         <NavLink to="/account/post">
           <PostPhoto />

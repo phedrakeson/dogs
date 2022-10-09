@@ -4,6 +4,7 @@ import { UserContext } from '../../../Shared/Context/UserContext';
 import Button from '../../../Shared/Forms/Button/Button';
 import Input from '../../../Shared/Forms/Input/Input';
 import { Error } from '../../../Shared/Helpers/Error';
+import { Head } from '../../../Shared/Helpers/Head/Head';
 import { useFetch } from '../../../Shared/Hooks/useFetch';
 import { useForm } from '../../../Shared/Hooks/useForm';
 import styles from './LoginCreate.module.css'
@@ -29,6 +30,7 @@ const LoginCreate = () => {
 
   return (
     <section className="animeLeft">
+      <Head title="Create your account" />
       <h1 className='title'>Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <Input label="Username" type="text" name="username" {...username} />

@@ -3,6 +3,7 @@ import { PASSWORD_LOST } from '../../../Enviroment/api'
 import Button from '../../../Shared/Forms/Button/Button'
 import Input from '../../../Shared/Forms/Input/Input'
 import { Error } from '../../../Shared/Helpers/Error'
+import { Head } from '../../../Shared/Helpers/Head/Head'
 import { useFetch } from '../../../Shared/Hooks/useFetch'
 import { useForm } from '../../../Shared/Hooks/useForm'
 import styles from './PasswordLost.module.css'
@@ -22,6 +23,7 @@ const PasswordLost = () => {
 
   return (
     <section>
+      <Head title="Lost Password" />
       <h1 className='title'>Lost Password?</h1>
       {data ? <p style={{ color: '#4c1' }}>Email sent.</p> : <form onSubmit={handleSubmit}>
         <Input label="Email / User" type="text" name="email" {...login} />

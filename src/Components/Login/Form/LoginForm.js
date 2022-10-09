@@ -7,6 +7,7 @@ import stylesBtn from '../../../Shared/Forms/Button/Button.module.css';
 import { useForm } from '../../../Shared/Hooks/useForm';
 import { UserContext } from '../../../Shared/Context/UserContext';
 import { Error } from '../../../Shared/Helpers/Error';
+import { Head } from '../../../Shared/Helpers/Head/Head';
 
 const LoginForm = () => {
   const { userLogin, error, loading } = React.useContext(UserContext);
@@ -23,6 +24,7 @@ const LoginForm = () => {
 
   return (
     <section className="animeLeft">
+      <Head title="Login" />
       <h1 className="title">Log In</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
         <Input label="Username" type="text" name="username" {...username} />
