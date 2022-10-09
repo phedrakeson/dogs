@@ -9,6 +9,7 @@ import { User } from './Components/User/User';
 import { ProtectedRoute } from './Shared/Helpers/ProtectedRoute';
 import { Photo } from './Shared/Feed/Photo/Photo';
 import { UserProfile } from './Components/User/Profile/UserProfile';
+import { NotFound } from './Components/NotFound/NotFound';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="photo/:id" element={<Photo />} />
           <Route path="account/*" element={<ProtectedRoute><User /></ProtectedRoute>} />
           <Route path="profile/:user" element={<UserProfile />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </UserStorage>
