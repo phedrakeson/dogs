@@ -22,7 +22,7 @@ const PasswordLost = () => {
   }
 
   return (
-    <section>
+    <section className='animeLeft'>
       <Head title="Lost Password" />
       <h1 className='title'>Lost Password?</h1>
       {data ? <p style={{ color: '#4c1' }}>Email sent.</p> : <form onSubmit={handleSubmit}>
