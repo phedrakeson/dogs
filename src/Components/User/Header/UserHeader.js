@@ -13,7 +13,7 @@ export const UserHeader = () => {
         setTitle('Post your photo');
         break;
       case '/account/stats':
-        setTitle('Stats');
+        setTitle('Statistics');
         break;
       default:
         setTitle('My Photos');
