@@ -115,3 +115,14 @@ export function PASSWORD_LOST(body) {
     },
   }
 }
+
+export function PASSWORD_RESET(body) {
+  return {
+    url: pathValues.API_BASE_URL + '/api/password/reset',
+    options: {
+      method: 'POST',
+      headers: pathValues.HEADERS,
+      body: JSON.stringify(body)
+    },
+  }
+}
